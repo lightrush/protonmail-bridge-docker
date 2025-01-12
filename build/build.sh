@@ -19,5 +19,8 @@ if [[ $ARCH == "armv7l" ]] ; then
 	find $(go env GOPATH)/pkg/mod/github.com/\!proton\!mail/go-rfc5322*/ -type f -exec sed -i.bak 's/(1<</(int64(1)<</g' {} +
 fi
 
+# Listen on 0.0.0.0
+find . -name "constants.go" -exec sed -i 's/Host = "127.0.0.1"/Host = "0.0.0.0"/' {} \;
+
 # Build
 make build-nogui
